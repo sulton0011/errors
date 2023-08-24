@@ -1,8 +1,14 @@
-# Error Wrapping Utility
+# Error Wrapping Utility [![AppVeyor](https://ci.appveyor.com/api/projects/status/b98mptawhudj53ep/branch/master?svg=true)](https://ci.appveyor.com/project/davecheney/errors/branch/master) [![GoDoc](https://godoc.org/github.com/pkg/errors?status.svg)](http://godoc.org/github.com/pkg/errors) [![Report card](https://goreportcard.com/badge/github.com/pkg/errors)](https://goreportcard.com/report/github.com/pkg/errors)
+
+### Package errors provides simple error handling primitives.
+
+```
+go get github.com/pkg/errors
+```
 
 This utility provides two functions, `Wrap` and `WrapLog`, designed to enhance error handling and logging in Go applications.
 
-## Function `Wrap`
+### Function `Wrap`
 
 The `Wrap` function is used to wrap an existing error with additional messages. It facilitates creating more informative error messages by combining custom messages with the original error message. The resulting error provides improved context and helps with error tracing.
 

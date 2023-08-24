@@ -1,5 +1,3 @@
-
-
 # Error Wrapping Utility
 
 This utility provides two functions, `Wrap` and `WrapLog`, designed to enhance error handling and logging in Go applications.
@@ -66,5 +64,5 @@ In this example, `WrapLog` logs the error with additional information, while `Wr
 ### Console if there is an error
 
 ```
-
+023/08/24 15:25:26 todoService--->Get request: { 3} Error: strconv.Atoi--->1--->strconv.Atoi: parsing "": invalid syntax
 ```

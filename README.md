@@ -45,23 +45,26 @@ If `originalErr` is not nil, `WrapLog` will log a message that combines the addi
 Here's an example demonstrating the use of the `Wrap` and `WrapLog` functions:
 
 ```go
-func PerformOperation() error {
-    err := SomeFunction()
-    if err != nil {
-        WrapLog(&err, requestDetails, "Error during operation")
-        return Wrap(&err, "Failed to perform operation")
-    }
-    return nil
+func (s *todoService) Get(ctx context.Context, req *pb.TodoRequest) (resp *pb.TodoResponse, err error) {
+	defer errors.WrapLog(&err, req, "todoService", "Get")
+
+	if err = strconv.Atoi(req.Discount); err != nil {
+		return nil, errors.Wrap(&err, "strconv.Atoi", 1)
+	}
+	if err = strconv.Atoi(req.Amount); err != nil {
+		return nil, errors.Wrap(&err, "strconv.Atoi", 2)
+	}
+
+	resp, err = s.Repo.Dodo.Get(ctx, req)
+
+	return 
 }
 ```
 
 In this example, `WrapLog` logs the error with additional information, while `Wrap` combines the error with a custom error message for better error handling.
 
----
-
-Feel free to adapt and expand this README.md to match your project's specific needs and context.
+### Console if there is an error
 
 ```
 
-You can copy and paste this content into your project's README.md file and adjust it according to your actual project details and preferences.
 ```

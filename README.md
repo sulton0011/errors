@@ -46,10 +46,10 @@ Here's an example demonstrating the use of the `Wrap` and `WrapLog` functions:
 func (s *todoService) Get(ctx context.Context, req *pb.TodoRequest) (resp *pb.TodoResponse, err error) {
 	defer errors.WrapLog(&err, req, "todoService", "Get")
 
-	if err = strconv.Atoi(req.Discount); err != nil {
+	if _, err = strconv.Atoi(req.Discount); err != nil {
 		return nil, errors.Wrap(&err, "strconv.Atoi", 1)
 	}
-	if err = strconv.Atoi(req.Amount); err != nil {
+	if _, err = strconv.Atoi(req.Amount); err != nil {
 		return nil, errors.Wrap(&err, "strconv.Atoi", 2)
 	}
 

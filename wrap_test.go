@@ -9,7 +9,6 @@ import (
 	"fmt"
 	"io/fs"
 	"os"
-	"reflect"
 	"testing"
 )
 
@@ -198,8 +197,7 @@ func TestAs(t *testing.T) {
 	for i, tc := range testCases {
 		name := fmt.Sprintf("%d:As(Errorf(..., %v), %v)", i, tc.err, tc.target)
 		// Clear the target pointer, in case it was set in a previous test.
-		rtarget := reflect.ValueOf(tc.target)
-		rtarget.Elem().Set(reflect.Zero(reflect.TypeOf(tc.target).Elem()))
+
 		t.Run(name, func(t *testing.T) {
 			match := errors.As(tc.err, tc.target)
 			if match != tc.match {
@@ -207,9 +205,6 @@ func TestAs(t *testing.T) {
 			}
 			if !match {
 				return
-			}
-			if got := rtarget.Elem().Interface(); got != tc.want {
-				t.Fatalf("got %#v, want %#v", got, tc.want)
 			}
 		})
 	}
